@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.ordertracking.dto.UserRegisterRequest;
-import com.ecommerce.ordertracking.dto.UserResponse; // Import UserResponse
+import com.ecommerce.ordertracking.dto.UserResponse;
 import com.ecommerce.ordertracking.model.User;
 import com.ecommerce.ordertracking.service.UserService;
 
@@ -34,7 +34,7 @@ public class UserController {
         userResponse.setId(savedUser.getId());
         userResponse.setUsername(savedUser.getUsername());
         userResponse.setEmail(savedUser.getEmail());
-        
+
         return ResponseEntity.ok(userResponse);
     }
 
@@ -53,7 +53,8 @@ public class UserController {
         return ResponseEntity.ok(userResponses);
     }
 
-    @GetMapping("/{id}")
+    // This is the corrected line
+    @GetMapping("/{id:[0-9]+}") // Only match if {id} is a number
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
         UserResponse userResponse = new UserResponse();

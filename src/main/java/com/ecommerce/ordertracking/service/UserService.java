@@ -25,10 +25,10 @@ public class UserService {
             throw new RuntimeException("Email already exists!");
         }
 
-        User user = User.builder()
-            .username((req.getUsername()))
+          User user = User.builder()
+            .username(req.getUsername()) 
             .email(req.getEmail())
-            .password(passwordEncoder.encode(req.getPassword())) // Encode the password
+            .password(passwordEncoder.encode(req.getPassword())) 
             .build();
 
         return userRepository.save(user);
